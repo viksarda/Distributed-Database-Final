@@ -1,0 +1,9 @@
+SELECT 
+client.id_client AS IDC,
+client.firstName AS FN,
+client.lastName AS LN,
+SUM(packet.id_packet) AS PACKETSUM
+FROM client
+JOIN packet ON client.id_client = packet.Fk_client
+GROUP BY 
+client.id_client 

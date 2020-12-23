@@ -1,0 +1,13 @@
+BEGIN
+DECLARE newpacket VARCHAR(255);
+SELECT
+ price INTO newpacket
+FROM packet
+INNER JOIN 
+paketprice
+ON packet.Fk_price_packet = paketprice.id_paket_Price
+WHERE packet.id_packet = NEW.id_packet;
+INSERT INTO stat
+SET stat.Desc_STAT = CONCAT('Inserted packet with ID = ',NEW.id_packet,' and Price: ',newpacket),
+    DATE_STAT = NOW();
+END
